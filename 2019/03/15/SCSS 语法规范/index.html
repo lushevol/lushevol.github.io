@@ -108,20 +108,24 @@
 
 
 
-  <meta property="og:type" content="website">
+  <meta name="description" content="SCSS 语法规范Sass 有两种语法规则(syntaxes),目前新的语法规则（从 Sass 3开始）被称为 “SCSS”( 时髦的css（Sassy CSS）),它是css3语法的的拓展级，就是说每一个语法正确的CSS3文件也是合法的SCSS文件，SCSS文件使用.scss作为拓展名。第二种语法别成为缩进语法（或者 Sass），它受到了Haml的简洁精炼的启发，它是为了人们可以用和css相近的">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Lushevol">
-<meta property="og:url" content="http://www.lushevol.com/index.html">
+<meta property="og:url" content="http://www.lushevol.com/2019/03/15/SCSS 语法规范/index.html">
 <meta property="og:site_name" content="Lushevol">
+<meta property="og:description" content="SCSS 语法规范Sass 有两种语法规则(syntaxes),目前新的语法规则（从 Sass 3开始）被称为 “SCSS”( 时髦的css（Sassy CSS）),它是css3语法的的拓展级，就是说每一个语法正确的CSS3文件也是合法的SCSS文件，SCSS文件使用.scss作为拓展名。第二种语法别成为缩进语法（或者 Sass），它受到了Haml的简洁精炼的启发，它是为了人们可以用和css相近的">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-15T18:23:15.948Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lushevol">
+<meta name="twitter:description" content="SCSS 语法规范Sass 有两种语法规则(syntaxes),目前新的语法规则（从 Sass 3开始）被称为 “SCSS”( 时髦的css（Sassy CSS）),它是css3语法的的拓展级，就是说每一个语法正确的CSS3文件也是合法的SCSS文件，SCSS文件使用.scss作为拓展名。第二种语法别成为缩进语法（或者 Sass），它受到了Haml的简洁精炼的启发，它是为了人们可以用和css相近的">
 
 
 
 
 
 
-  <link rel="canonical" href="http://www.lushevol.com/"/>
+  <link rel="canonical" href="http://www.lushevol.com/2019/03/15/SCSS 语法规范/"/>
 
 
 
@@ -131,7 +135,7 @@
   };
 </script>
 
-  <title>Lushevol</title>
+  <title> | Lushevol</title>
   
 
 
@@ -178,8 +182,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -220,7 +223,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
     <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
   </li>
@@ -264,9 +267,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -299,10 +302,6 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/15/SCSS 语法规范/" itemprop="url">
-                  未命名
-                </a>
               
             
           </h1>
@@ -377,9 +376,7 @@
       
 
       
-        
-          
-            <h1 id="SCSS-语法规范"><a href="#SCSS-语法规范" class="headerlink" title="SCSS 语法规范"></a>SCSS 语法规范</h1><p>Sass 有两种语法规则(syntaxes),目前新的语法规则（从 Sass 3开始）被称为 “SCSS”( 时髦的css（Sassy CSS）),它是css3语法的的拓展级，就是说每一个语法正确的CSS3文件也是合法的SCSS文件，SCSS文件使用.scss作为拓展名。第二种语法别成为缩进语法（或者 Sass），它受到了Haml的简洁精炼的启发，它是为了人们可以用和css相近的但是更精简的方式来书写css而诞生的。它没有括号，分号，它使用 行缩进 的方式来指定css 块，虽然sass不是最原始的语法，但是缩进语法将继续被支持，在缩进语法的文件以 .sass 为拓展名。</p>
+        <h1 id="SCSS-语法规范"><a href="#SCSS-语法规范" class="headerlink" title="SCSS 语法规范"></a>SCSS 语法规范</h1><p>Sass 有两种语法规则(syntaxes),目前新的语法规则（从 Sass 3开始）被称为 “SCSS”( 时髦的css（Sassy CSS）),它是css3语法的的拓展级，就是说每一个语法正确的CSS3文件也是合法的SCSS文件，SCSS文件使用.scss作为拓展名。第二种语法别成为缩进语法（或者 Sass），它受到了Haml的简洁精炼的启发，它是为了人们可以用和css相近的但是更精简的方式来书写css而诞生的。它没有括号，分号，它使用 行缩进 的方式来指定css 块，虽然sass不是最原始的语法，但是缩进语法将继续被支持，在缩进语法的文件以 .sass 为拓展名。</p>
 <h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>有三种形式：</p>
 <p>（1）//comment：该注释只是在.scss源文件中有，编译后的css文件中没有。</p>
 <p>（2）/<em>!</em> /：重要注释，任何style的css文件中都会有，一般放置css文件版权说明等信息。</p>
@@ -460,8 +457,6 @@
 <h3 id="颜色函数"><a href="#颜色函数" class="headerlink" title="颜色函数"></a>颜色函数</h3><p>SASS提供了一些内置的颜色函数，以便生成系列颜色。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">　　lighten(#cc3, 10%)  // #d6d65c</span><br><span class="line">　　darken(#cc3, 10%)  //  #a3a329</span><br><span class="line">　　grayscale(#cc3) // #808080</span><br><span class="line">　　complement(#cc3) // #33c</span><br></pre></td></tr></table></figure>
 
-          
-        
       
     </div>
 
@@ -481,203 +476,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lushevol.com/2019/03/13/TCP连接复用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="George Lucas">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lushevol">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/13/TCP连接复用/" itemprop="url">
-                  TCP连接复用
-                </a>
-              
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
+              <a href="/2019/03/13/TCP连接复用/" rel="next" title="TCP连接复用">
+                <i class="fa fa-chevron-left"></i> TCP连接复用
+              </a>
             
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-13 20:49:39" itemprop="dateCreated datePublished" datetime="2019-03-13T20:49:39+08:00">2019-03-13</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-21 22:45:19" itemprop="dateModified" datetime="2018-08-21T22:45:19+08:00">2018-08-21</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>这是我16年调研负载均衡时记录的内容，把它翻出来看看。</p>
-<h1 id="TCP-MULTIPLEXING"><a href="#TCP-MULTIPLEXING" class="headerlink" title="TCP MULTIPLEXING"></a>TCP MULTIPLEXING</h1><p>负载均衡器与后台真实服务器的连接复用，即有空闲的长连接就使用空闲的长连接，没有就建立新的连接然后通讯结束之后不关闭，下次请求直接使用该空闲连接。避免了新建TCP连接造成的延时和资源消耗。</p>
-<blockquote>
-<p>采用TCP连接复用技术后，客户端（如：ClientA）与负载均衡设备之间进行三次握手并发送HTTP请求。<strong>负载均衡设备</strong>收到请求后，会<strong>检测服务器是否存在空闲的长连接</strong>，如果不存在，服务器将建立一个新连接。当HTTP请求响应完成后，客户端则与负载均衡设备协商关闭连接，而负载均衡则保持与服务器之间的这个连接。当有其它客户端（如：ClientB）需要发送HTTP请求时，负载均衡设备会直接向与服务器之间保持的这个空闲连接发送 HTTP请求，避免了由于新建TCP连接造成的延时和服务器资源耗费。</p>
-</blockquote>
-<ul>
-<li>由此可见，TCP连接复用是由负载均衡器完成的工作，前提是TCP连接不关闭，负载均衡器寻找空闲的连接或者（满员情况下）建立新连接。</li>
-</ul>
-<blockquote>
-<p>连接复用效率的关键在于负载均衡设备是否能够及时释放已经空闲的服务器端连接。最好的连接复用方法在于负载均衡设备给客户端发送HTTP响应之后，收到客户端确认ACK数据报即释放该连接，这种方法避免了任何方式的等待时间，理论上没有更高效的复用方法。（释放TCP连接还是HTTP连接？）</p>
-</blockquote>
-<p>一般拥有tcp连接复用的系统称之为NetScaler，即网络加速器，或者Application Delivery Control，即应用交付控制器。这种设备拥有一个Connection reuse pool（连接复用池），当客户端请求到达时，检查pool中是否存在可用连接，有的话便用作传输连接；没有的话则创建新的连接传输。传输结束后，返回pool中，等待该客户端或者其他客户端的请求。</p>
-<blockquote>
-<p>值得注意的是，相同客户端的请求不一定使用相同的连接。</p>
-</blockquote>
-<p>TCP连接复用不仅提供了http协议的复用，也提供了SSL的复用（避免CPU对每次连接都进行密钥交换）和数据流的复用（即是会话保持，同一个客户端的请求发送给同一个后台）。</p>
-<h1 id="TCP-TW-REUSE"><a href="#TCP-TW-REUSE" class="headerlink" title="TCP_TW_REUSE"></a>TCP_TW_REUSE</h1><p>复用处于TIME_WAIT状态的端口，使其立刻投入到连接的使用中。</p>
-<p><strong>注意</strong>：只有认定为”安全”的端口才会被reuse，有两个要求：</p>
-<ol>
-<li>tcp_timestamps和tcp_tw_reuse都必须打开； </li>
-<li>重用TIME_WAIT条件是端口最后接收的报文超过了1s时间 </li>
-</ol>
-<blockquote>
-<p>个人认为这和TCP连接复用不一样:</p>
-</blockquote>
-<p><strong>TCP连接复用</strong>是不关闭已经处理完事务的TCP连接，再次使用它们通讯，即TCP连接未断开，属于LoadBalancer的特性。</p>
-<p>而<strong>TCP_TW_REUS</strong>E则是真实服务器的socket使用与否的问题，即真实服务器启用该内核参数后，会快速重新使用TIME_WAITE端口，使得连接队列不容易拥塞，属于服务器的特性。</p>
-<h1 id="HTTP-REUSE"><a href="#HTTP-REUSE" class="headerlink" title="HTTP REUSE"></a>HTTP REUSE</h1><p>  HTTP连接复用： 在 HTTP 1.0中，客户端的每一个HTTP请求都必须通过独立的TCP连接进行处理，而在HTTP 1.1中，对这种方式进行了改进。客户端可以在 一个TCP连接 中发送多个HTTP请求，这种技术叫做HTTP复用（HTTP Multiplexing）。它与TCP连接复用最根本的区别在于，TCP连接复用是将 多个客户端 的HTTP请求复用到一个服务器端TCP连接上，而 HTTP复用则是 一个客户端的多个HTTP请求 通过一个TCP连接进行处理。前者是负载均衡设备的独特功能；而后者是HTTP 1.1协议所支持的新功能，目前被大多数浏览器所支持。</p>
-<h1 id="FULLNAT"><a href="#FULLNAT" class="headerlink" title="FULLNAT"></a>FULLNAT</h1><p>在net/netfilter/ipvs/ip_vs_protocol_tcp.c:561中存在代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IP_VS_INC_ESTATS(ip_vs_esmib , FULLNAT_CONN_REUSED);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">case</span> IP_VS_TCP_S_CLOSE:  IP_VS_INC_ESTATS(ip_vs_esmib , FULLNAT_CONN_REUSED_CLOSE/TIMEWAIT/FINWAIT/CLOSEWAIT);</span><br></pre></td></tr></table></figure>
-<p>而宏定义：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ip_vs_estats_mib</span> &#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> mibs[IP_VS_EXT_STAT_LAST];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">extern</span> <span class="class"><span class="keyword">struct</span> <span class="title">ip_vs_estats_mib</span> *<span class="title">ip_vs_esmib</span>;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IP_VS_INC_ESTATS(mib , field)  (per_cpu_ptr(mib , smp_processor_id()) -&gt; mibs[field]++)</span></span><br></pre></td></tr></table></figure>
-<p>宏定义可知这是一个per-CPU变量函数：</p>
-<blockquote>
-<p>动态per-CPU变量的引用:<br>存取一个动态分配的per-CPU变量通过宏per_cpu_ptr()来完成;<br>per_cpu_ptr(per_cpu_var,cpu_id);<br>这个宏返回一个指针,指向per_cpu_var对应于给定cpu_id的版本;如果你在简单地读取另一个处理器上的这个变量的版本,那就可以引用这个指针并且用它来完成;但是,如果你在操作当前处理器上的这个版本的变量,那就可能需要首先保证当前进程不能被移出那个处理器;如果你存取这个per-CPU变量的全部都持有一个<strong>自旋锁</strong>,那就万事大吉;但是,通常都需要使用函数get_cpu()来阻止正在使用该per-CPU变量时的抢占;因此,使用动态 per-CPU变量的代码看来会如此:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> cpu;</span><br><span class="line">cpu = get_cpu();</span><br><span class="line">ptr = per_cpu_ptr(per_cpu_var,cpu);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  使用该per-CPU变量的代码</span></span><br><span class="line"><span class="comment">  .......</span></span><br><span class="line"><span class="comment">  (\*ptr)++;</span></span><br><span class="line"><span class="comment">  .......</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">put_cpu();</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p>备注:当使用编译时的per-CPU变量时,可以使用宏get_cpu_var和put_cpu_var来照看这些细节,使用动态per-CPU变量时,则需要更多的显式保护;</p>
-<p>表示某个cpu变量下的mib子节点mibs的field内部变量自加一（也有其他增减方式）。</p>
-<p>在这段代码上面还有secure_tcp_sequence_number()</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 根据双方地址、端口计算初始序号 */</span></span><br><span class="line">tp-&gt;write_seq = secure_tcp_sequence_number(inet-&gt;saddr , inet-&gt;daddr , inet-&gt;sport , usin-&gt;sin_port);</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -687,401 +507,15 @@
   </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lushevol.com/2019/03/13/IOS12 beta升级方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="George Lucas">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lushevol">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/13/IOS12 beta升级方法/" itemprop="url">
-                  IOS12 beta升级方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-13 20:49:39" itemprop="dateCreated datePublished" datetime="2019-03-13T20:49:39+08:00">2019-03-13</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-20 23:05:03" itemprop="dateModified" datetime="2018-08-20T23:05:03+08:00">2018-08-20</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>前言</p>
-<p>截至这篇文章(2018.08.20)写的时候，IOS12 beta已经发布了第八个测试版本，也即是IOS12 beta8。上个版本beta7由于出现重大bug而被紧急撤回了，导致版本迅速变成了8。</p>
-</li>
-<li><p>升级方法</p>
-<p>废话少说，我们来升级吧。我的手机是iphone6s，是IOS12适配的机型之一（最低适配5S），升级之前的系统是11.4。IOS12 beta并不能通过常规方式进行直接升级，而是需要先下载<strong>描述文件</strong>到iphone，才能触发系统的升级选项。</p>
-<ul>
-<li><p>首先用<strong>iphone的浏览器</strong>打开描述文件网址</p>
-<p><code>https://beta.apple.com/sp/betaprogram/redemption?locale=zh#ios</code></p>
-<p>浏览器会提示登录，用apple id登录。</p>
-<p>网页里已经标好了一二三步，第一步用iTunes备份系统，已经有iCloud云备份的就不用额外备份了，如果没有的化，需要在电脑上备份，具体方法就不多说了，备份系统包括应用数据，会比较大（我的备份就有17GB…）。</p>
-</li>
-<li><p>第二步下载描述文件，系统会提示“此网站正尝试打开‘设置’以向您显示一个配置描述文件。您允许吗？”，点击允许，下载描述文件。</p>
-</li>
-<li><p>安装描述文件，输入密码，同意一长串协议后安装。安装完成提示重启。</p>
-</li>
-<li><p>重启后在“通用” -&gt; “软件更新” 中就能发现IOS12 beta的更新提示了！</p>
-</li>
-</ul>
-<p>到此，IOS12 beta已经可以在你的手机上更新了，不要忘了备份数据哦~</p>
-</li>
-<li><p>后话</p>
-<p>我是听说IOS12有着对老设备完美的兼容性和巨大的性能提升才下决心升级的，据媒体称“升级之后，手机如丝般顺滑”。额，但是怎么说呢，经过快一个月的试用，我并没发现比IOS11.4快很多，APP确实在开启时间和等待时间上缩减了不少，但响应速度还是慢得出奇。而且不知道是不是试用版的原因（或者是手机真的跟不上了），经常<strong>会出现APP内容刷不出来的情况</strong>。有时候也会出现图标重叠的bug，然而无关紧要。</p>
-<p>现在对IOS12最大的希望就是赶紧发布正式版，毕竟beta版还有很多bug，性能优化估计就到这儿了。</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lushevol.com/2019/03/13/flutter 入门教程之从零开始搭建flutter/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="George Lucas">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lushevol">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/13/flutter 入门教程之从零开始搭建flutter/" itemprop="url">
-                  flutter 入门教程之从零开始搭建flutter
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-13 20:49:39" itemprop="dateCreated datePublished" datetime="2019-03-13T20:49:39+08:00">2019-03-13</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-20 19:00:40" itemprop="dateModified" datetime="2018-08-20T19:00:40+08:00">2018-08-20</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>准备工作</p>
-<ul>
-<li>系统：笔者使用的是Windows 10系统，官网要求至少是Windows 7及以上。</li>
-<li>git：flutter SDK开源，托管在github上，因此持续开发需要从github上拉取代码。</li>
-<li>Java SDK:  <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">下载安装</a>。选默认的就行。</li>
-<li>android studio &amp; android SDK: 需要安装安卓IDE和SDK，并<strong>下载Dart和flutter组件</strong>。之前没有用过的同学会遇到一些麻烦，解决办法见文末。</li>
-<li>其他：不能科学上网也没关系，贴心的谷歌为国内用户开放了国内镜像。</li>
-</ul>
-</li>
-<li><p>起步</p>
-<p>让我们开始吧！</p>
-<p>首先下载flutter代码，从<a href="https://github.com/flutter/flutter" target="_blank" rel="noopener">github</a>上拉取或者直接下载<a href="https://flutter.io/sdk-archive/#windows" target="_blank" rel="noopener">压缩包</a>都行。这里演示github下载</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone -b beta https://github.com/flutter/flutter.git</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>注意：</strong>这里使用beta分支，因为目前master版本依赖的SDK版本很新，国内镜像没有更新。</p>
-</blockquote>
-<p>然后配置环境变量，在<strong>系统变量</strong>中</p>
-<ul>
-<li>新增变量 PUB_HOSTED_URL 值为 <a href="https://pub.flutter-io.cn" target="_blank" rel="noopener">https://pub.flutter-io.cn</a>    //国内镜像</li>
-<li>新增变量 FLUTTER_STORAGE_BASE_URL 值为 <a href="https://storage.flutter-io.cn" target="_blank" rel="noopener">https://storage.flutter-io.cn</a>  //国内镜像</li>
-<li>将flutter/bin添加到PATH中</li>
-</ul>
-<p>重启计算机，双击flutter目录中的 flutter_console.bat 文件，开启一个命令终端。</p>
-<p>在终端中输入<code>flutter doctor</code>，检测环境是否<strong>安装完全</strong>（如果已经按照前面几步完成的化，这里只会出现一个 No devices available 错误）。</p>
-</li>
-<li><p>启动</p>
-<p>下面让我们来开始体验flutter的应用开发吧 : )</p>
-<ul>
-<li>在Android Studio启动页选择 Start a new Flutter project </li>
-<li>点击flutter application</li>
-<li>选择路径下载flutter SDK，然后再次选择该目录下的flutter(真·SDK路径，否则会报 Flutter SDK is not found in the specified location)</li>
-<li>选择工程路径，修改工程名称和描述。点击下一步。</li>
-<li>根据自己的情况选择是否勾选Kotlin或IOS。点击finish。</li>
-</ul>
-<p>一切完成后，会出现包含Material 组件的示例代码。但我们还缺少Android虚拟机，因此我们来创建一个。</p>
-<ul>
-<li>点击顶部导航栏Tools -&gt; AVD Manager</li>
-<li>选择Create Virtual Device，在提供的虚拟设备中选择一个（我选择的是Pixel 2 XL）。</li>
-<li>选择Android系统版本，并点击Download下载镜像。</li>
-<li>完成后运行虚拟设备。一个Android虚拟机就被创建出来了！</li>
-</ul>
-<p>此时点击Android Studio的Run按钮，<strong>等待编译</strong>，便可在虚拟机中看到示例代码的运行结果了。</p>
-</li>
-<li><p>可能出现的问题</p>
-<ul>
-<li><p>android studio 和 SDK下载</p>
-<p>Android studio <a href="https://developer.android.com/studio/?hl=zh-cn" target="_blank" rel="noopener">下载地址</a>，下载完成后配置proxy：Configure -&gt; settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; HTTP Proxy，选中Auto-detect proxy settings，勾选下方Automatic proxy configuration URL，填入代理地址 <code>mirrors.neusoft.edu.cn:80</code>（大连东软信息学院镜像服务器，任意镜像服务器都可以） 。然后点击HTTP Proxy下方的Android SDK，首先配置路径，然后会自动要求下载各种SDK，直接下一步即可。</p>
-<p>如果没有开发过项目，flutter会提示你没有同意Android的license，这个时候直接执行<code>flutter doctor --android-licenses</code>后一路同意即可。</p>
-</li>
-<li><p>Dart和flutter组件</p>
-<p>在Configure -&gt;  Plugins中搜索Dart和flutter（标准库中没有这俩，需要Browse Repositories中搜索），安装后点击Restart Android Studio 。</p>
-</li>
-<li><p>Emulator: emulator: ERROR: x86_64 emulation currently requires hardware acceleration!</p>
-<p>选择Tools -&gt; SDK Manager，选择SDK Tools -&gt; intel x86 Emulator Accelerator (HAXM installer)，点击Apply。它会让你下载，等待下载并finish即可。</p>
-</li>
-</ul>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -1102,8 +536,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1167,6 +610,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SCSS-语法规范"><span class="nav-number">1.</span> <span class="nav-text">SCSS 语法规范</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注释"><span class="nav-number">1.1.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">1.2.</span> <span class="nav-text">开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建scss"><span class="nav-number">1.2.2.</span> <span class="nav-text">构建scss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Webpack"><span class="nav-number">1.2.3.</span> <span class="nav-text">Webpack</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变量与选择器"><span class="nav-number">2.</span> <span class="nav-text">变量与选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">2.1.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">2.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套引用"><span class="nav-number">2.1.2.</span> <span class="nav-text">嵌套引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量计算"><span class="nav-number">2.1.3.</span> <span class="nav-text">变量计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择器"><span class="nav-number">2.2.</span> <span class="nav-text">选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套"><span class="nav-number">2.2.1.</span> <span class="nav-text">嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#父元素引用"><span class="nav-number">2.2.2.</span> <span class="nav-text">父元素引用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码重用"><span class="nav-number">3.</span> <span class="nav-text">代码重用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">3.1.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用外部css文件（Partials）"><span class="nav-number">3.2.</span> <span class="nav-text">引用外部css文件（Partials）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mixin-amp-Include"><span class="nav-number">3.3.</span> <span class="nav-text">Mixin&amp;Include</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参数与缺省值"><span class="nav-number">3.3.1.</span> <span class="nav-text">参数与缺省值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编程式方法"><span class="nav-number">4.</span> <span class="nav-text">编程式方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#流程控制"><span class="nav-number">4.1.</span> <span class="nav-text">流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#条件语句"><span class="nav-number">4.1.1.</span> <span class="nav-text">条件语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环语句"><span class="nav-number">4.1.2.</span> <span class="nav-text">循环语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">4.2.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#颜色函数"><span class="nav-number">4.2.1.</span> <span class="nav-text">颜色函数</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1297,6 +756,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
 
   
 
