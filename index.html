@@ -281,6 +281,163 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lushevol.com/2019/03/19/babel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="George Lucas">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lushevol">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/19/babel/" itemprop="url">
+                  语法转义工具 - babel
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-19 16:51:51 / 修改时间：16:52:36" itemprop="dateCreated datePublished" datetime="2019-03-19T16:51:51+08:00">2019-03-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="语法转义工具-babel"><a href="#语法转义工具-babel" class="headerlink" title="语法转义工具 - babel"></a>语法转义工具 - babel</h1><p>Babel其实是一个编译JavaScript的平台，它可以编译代码帮你达到以下目的：</p>
+<ul>
+<li>让你能使用最新的JavaScript代码（ES6，ES7…），而不用管新标准是否被当前使用的浏览器完全支持；</li>
+<li>让你能使用基于JavaScript进行了拓展的语言，比如React的JSX；</li>
+</ul>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>Babel本质上是几个模块化的包，其核心功能位于称为<code>babel-core</code>的npm包中，webpack可以把其不同的包整合在一起使用，对于每一个你需要的功能或拓展，你都需要安装单独的包（用得最多的是解析Es6的<code>babel-env-preset</code>包）。</p>
+<p>Babel其实可以完全在 <code>webpack.config.js</code> 中进行配置，但是考虑到babel具有非常多的配置选项，在单一的<code>webpack.config.js</code>文件中进行配置往往使得这个文件显得太复杂，因此一些开发者支持把babel的配置选项放在一个单独的名为 “.babelrc” 的配置文件中。我们现在的babel的配置并不算复杂，不过之后我们会再加一些东西，因此现在我们就提取出相关部分，分两个配置文件进行配置（webpack会自动调用<code>.babelrc</code>里的babel配置选项），以USOP-VUE为例，在webpack.base.conf.js中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">        ...</span><br><span class="line">        &#123;</span><br><span class="line">            test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">                loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">                    include: [</span><br><span class="line">                        resolve(<span class="string">'src'</span>),</span><br><span class="line">                        resolve(<span class="string">'test'</span>),</span><br><span class="line">                        resolve(<span class="string">'node_modules/webpack-dev-server/client'</span>)</span><br><span class="line">                    ]</span><br><span class="line">        &#125;,</span><br></pre></td></tr></table></figure>
+<p>指定了对js解析的路径。具体配置在<code>.babelrc</code>中</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"presets"</span>: [</span><br><span class="line">    [<span class="string">"env"</span>, &#123;</span><br><span class="line">      <span class="attr">"modules"</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">"targets"</span>: &#123;</span><br><span class="line">        <span class="attr">"browsers"</span>: [<span class="string">"&gt; 1%"</span>, <span class="string">"last 2 versions"</span>, <span class="string">"not ie &lt;= 8"</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="string">"stage-2"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"plugins"</span>:[<span class="string">"transform-vue-jsx"</span>, <span class="string">"transform-runtime"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>主要关注plugins字段，babel会在这里加载一些解析规则。</p>
+<h4 id="单文件使用"><a href="#单文件使用" class="headerlink" title="单文件使用"></a>单文件使用</h4><p>如果需要对某个文件进行ES6转义，可以尝试直接使用指令的方式来执行（此处@国明），基础语法如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx babel script.js --out-file script-compiled.js</span><br></pre></td></tr></table></figure>
+<p>可以额外增加参数，如source-map</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx babel script.js --out-file script-compiled.js --source-maps</span><br></pre></td></tr></table></figure>
+<p>或整个目录翻译</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx babel src --out-dir lib</span><br></pre></td></tr></table></figure>
+<p>也可以在<code>.babelrc</code>文件中配置使用。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.lushevol.com/2019/03/15/SCSS 语法规范/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -301,7 +458,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 <a class="post-title-link" href="/2019/03/15/SCSS 语法规范/" itemprop="url">
-                  未命名
+                  SCSS 语法规范
                 </a>
               
             
@@ -344,7 +501,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-16 02:23:15" itemprop="dateModified" datetime="2018-12-16T02:23:15+08:00">2018-12-16</time>
+                <time title="修改时间：2019-03-19 16:52:15" itemprop="dateModified" datetime="2019-03-19T16:52:15+08:00">2019-03-19</time>
               
             
           </span>
@@ -1118,7 +1275,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
