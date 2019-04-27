@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="[TOC] webpack本质在前端工程化的今天，webpack允许我们写出更加复杂的代码，让我们无需担心代码不被识别。webpack可以看做是模块打包机：它做的事情是，分析你的项目结构，找到JavaScript模块以及其它的一些浏览器不能直接运行的拓展语言（SCSS，TypeScript等），并将其转换和打包为合适的格式供浏览器使用。 使用现在我们DevOps的新项目都是基于webpack构建的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码处理&amp;打包工具 - webpack">
+<meta property="og:url" content="http://www.lushevol.com/2019/04/27/webpack/index.html">
+<meta property="og:site_name" content="Lushevol">
+<meta property="og:description" content="[TOC] webpack本质在前端工程化的今天，webpack允许我们写出更加复杂的代码，让我们无需担心代码不被识别。webpack可以看做是模块打包机：它做的事情是，分析你的项目结构，找到JavaScript模块以及其它的一些浏览器不能直接运行的拓展语言（SCSS，TypeScript等），并将其转换和打包为合适的格式供浏览器使用。 使用现在我们DevOps的新项目都是基于webpack构建的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-27T13:15:34.298Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代码处理&amp;打包工具 - webpack">
+<meta name="twitter:description" content="[TOC] webpack本质在前端工程化的今天，webpack允许我们写出更加复杂的代码，让我们无需担心代码不被识别。webpack可以看做是模块打包机：它做的事情是，分析你的项目结构，找到JavaScript模块以及其它的一些浏览器不能直接运行的拓展语言（SCSS，TypeScript等），并将其转换和打包为合适的格式供浏览器使用。 使用现在我们DevOps的新项目都是基于webpack构建的">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.lushevol.com/2019/04/27/webpack/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>代码处理&打包工具 - webpack | Lushevol</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lushevol</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">In time of peace prepare for war</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lushevol.com/2019/04/27/webpack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="George Lucas">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lushevol">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">代码处理&打包工具 - webpack
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-27 21:12:56 / 修改时间：21:15:34" itemprop="dateCreated datePublished" datetime="2019-04-27T21:12:56+08:00">2019-04-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<h3 id="webpack本质"><a href="#webpack本质" class="headerlink" title="webpack本质"></a>webpack本质</h3><p>在前端工程化的今天，webpack允许我们写出更加复杂的代码，让我们无需担心代码不被识别。webpack可以看做是<strong>模块打包机</strong>：它做的事情是，分析你的项目结构，找到JavaScript模块以及其它的一些浏览器不能直接运行的拓展语言（SCSS，TypeScript等），并将其转换和打包为合适的格式供浏览器使用。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>现在我们DevOps的新项目都是基于webpack构建的，各位可以在项目的根目录下看到build目录下若干webpack开头的配置文件。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">- </span>build: 编译相关脚本文件</span><br><span class="line">  - webpack.base.conf.js  基本webpack配置文件，生产环境和开发环境通用</span><br><span class="line">  - webpack.dev.conf.js  开发环境配置</span><br><span class="line">  - webpack.prod.conf.js  生产环境配置</span><br></pre></td></tr></table></figure>
+<p>一般来说，webpack的配置文件包含四大要素</p>
+<p>entry, output, modules, plugins</p>
+<p>以DevOps的新项目USOP-VUE的配置文件为例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  context: path.resolve(__dirname, <span class="string">'../'</span>),</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: <span class="string">'./src/main.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: config.build.assetsRoot,</span><br><span class="line">    filename: <span class="string">'[name].js'</span>,</span><br><span class="line">    publicPath:</span><br><span class="line">      process.env.NODE_ENV === <span class="string">'production'</span></span><br><span class="line">        ? config.build.assetsPublicPath</span><br><span class="line">        : config.dev.assetsPublicPath</span><br><span class="line">  &#125;,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    extensions: [<span class="string">'.js'</span>, <span class="string">'.vue'</span>, <span class="string">'.json'</span>],</span><br><span class="line">    alias: &#123;</span><br><span class="line">      <span class="string">'@'</span>: resolve(<span class="string">'src'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      ...(config.dev.useEslint ? [createLintingRule()] : []),</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.vue$/</span>,</span><br><span class="line">        loader: <span class="string">'vue-loader'</span>,</span><br><span class="line">        options: vueLoaderConfig</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">        loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">        include: [</span><br><span class="line">          resolve(<span class="string">'src'</span>),</span><br><span class="line">          resolve(<span class="string">'test'</span>),</span><br><span class="line">          resolve(<span class="string">'node_modules/webpack-dev-server/client'</span>)</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">      ......</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [<span class="keyword">new</span> VueLoaderPlugin()],</span><br><span class="line">  ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="entry"><a href="#entry" class="headerlink" title="entry"></a>entry</h4><p>entry主要用来设置打包文件的入口，即webpack从哪个文件开始进行打包，webpack会不断寻找其依赖关系，将所有依赖的文件打包在一起。</p>
+<p>在这里我们将入口文件设置成：<code>./src/main.js</code>，即项目目录下的src文件夹下的main.js文件，对它进行打包。由它作为入口，遍历整个项目</p>
+<h3 id="output"><a href="#output" class="headerlink" title="output"></a>output</h3><p>output主要用来设置文件输出的路径和文件名，我们通过<code>path</code>设置了文件打包输出的目录，即项目目录下的build文件夹。通过<code>filename</code>设置了文件输出的名字。</p>
+<h4 id="Modules"><a href="#Modules" class="headerlink" title="Modules"></a>Modules</h4><p>webpack处理规则，主要通过<code>Loaders</code>对代码进行解析。</p>
+<p><code>Loaders</code>是<code>webpack</code>提供的最激动人心的功能之一了。通过使用不同的<code>loader</code>，<code>webpack</code>有能力调用外部的脚本或工具，实现对不同格式的文件的处理，比如说分析转换scss为css，或者把下一代的JS文件（ES6，ES7)转换为现代浏览器兼容的JS文件，对React的开发而言，合适的Loaders可以把React的中用到的JSX文件转换为JS文件。</p>
+<p>Loaders需要单独安装并且需要在<code>webpack.config.js</code>中的<code>modules</code>关键字下进行配置，Loaders的配置包括以下几方面：</p>
+<ul>
+<li><code>test</code>：一个用以匹配loaders所处理文件的拓展名的正则表达式（必须）</li>
+<li><code>loader</code>：loader的名称（必须）</li>
+<li><code>include/exclude</code>:手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）；</li>
+<li><code>query</code>：为loaders提供额外的设置选项（可选）</li>
+</ul>
+<p>可以看到，我们对<code>.vue</code>后缀文件指定了<code>vue-loader</code>进行解析，那么它们会把vue相关文件转译成浏览器可识别的代码，<code>.js</code>代码同理，使用了语法转义工具babel（另一篇文章会单独说到）</p>
+<h4 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h4><p>Plugins我们可以通过它，给项目配置很多的插件。</p>
+<p>webpack也为我提供了完整的插件文档：<a href="https://link.juejin.im/?target=https%3A%2F%2Fwww.webpackjs.com%2Fplugins%2F" target="_blank" rel="noopener">插件文档</a></p>
+<p>在项目中我们主要使用VueLoaderPlugin来保障vue被正常解析。</p>
+<h4 id="单文件使用"><a href="#单文件使用" class="headerlink" title="单文件使用"></a>单文件使用</h4><p>webpack可以在终端中使用，在基本的使用方法如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> &#123;extry file&#125;出填写入口文件的路径，本文中就是上述main.js的路径，</span><br><span class="line"><span class="meta">#</span> &#123;destination for bundled file&#125;处填写打包文件的存放路径</span><br><span class="line"><span class="meta">#</span> 填写路径的时候不用添加&#123;&#125;</span><br><span class="line">webpack &#123;entry file&#125; &#123;destination for bundled file&#125;</span><br></pre></td></tr></table></figure>
+<p>指定入口文件后，webpack将自动识别项目所依赖的其它文件。</p>
+<h4 id="生成Source-Maps（使调试更容易）"><a href="#生成Source-Maps（使调试更容易）" class="headerlink" title="生成Source Maps（使调试更容易）"></a>生成Source Maps（使调试更容易）</h4><p>开发总是离不开调试，方便的调试能极大的提高开发效率，不过有时候通过打包后的文件，你是不容易找到出错了的地方，对应的你写的代码的位置的，<code>Source Maps</code>就是来帮我们解决这个问题的。</p>
+<p>通过简单的配置，<code>webpack</code>就可以在打包时为我们生成的<code>source maps</code>，这为我们提供了一种对应编译文件和源文件的方法，使得编译后的代码可读性更高，也更容易调试。</p>
+<blockquote>
+<p><code>source maps</code>也有不同类型，DevOps在工程化过程中，选用的是原生的<code>source maps</code>和更加快捷的<code>cheap-source-map</code>。有兴趣的可以了解下他们的区别。</p>
+</blockquote>
+<h4 id="使用webpack构建本地服务器"><a href="#使用webpack构建本地服务器" class="headerlink" title="使用webpack构建本地服务器"></a>使用webpack构建本地服务器</h4><p><code>Webpack</code>提供一个可选的本地开发服务器，这个本地服务器基于node.js构建，可以实现在本地启动调试服务器。不过它是一个单独的组件，在webpack中进行配置之前需要单独安装它作为项目依赖。</p>
+<blockquote>
+<p>DevOps前端新项目全线支持webpack-server，无须额外配置。</p>
+</blockquote>
+<h4 id="热加载"><a href="#热加载" class="headerlink" title="热加载"></a>热加载</h4><p>webpack可以配置在代码开发过程中，使用本地服务方式进行代码开发。而热加载则保证本地服务展示的代码始终是本地保存的最新代码。通过计算文件内容hash的方式，每次本地代码更新，都会触发热加载的重新加载。</p>
+<blockquote>
+<p><strong>热模块替换的好处是只替换更新的部分,而不是页面重载</strong>.</p>
+</blockquote>
+<h4 id="WebPack和Grunt以及Gulp相比有什么特性"><a href="#WebPack和Grunt以及Gulp相比有什么特性" class="headerlink" title="WebPack和Grunt以及Gulp相比有什么特性"></a>WebPack和Grunt以及Gulp相比有什么特性</h4><p>其实Webpack和另外两个并没有太多的可比性，Gulp/Grunt是一种能够优化前端的开发流程的工具，而WebPack是一种模块化的解决方案，不过Webpack的优点使得Webpack在很多场景下可以替代Gulp/Grunt类的工具。我们当前只需要掌握好webpack即可。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/27/Vue编程指导/" rel="next" title="Vue编程指导">
+                <i class="fa fa-chevron-left"></i> Vue编程指导
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">George Lucas</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lushevol" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:lushevol@outlook.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/silencels" target="_blank" title="Twitter"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack本质"><span class="nav-number">1.</span> <span class="nav-text">webpack本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#entry"><span class="nav-number">2.1.</span> <span class="nav-text">entry</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#output"><span class="nav-number">3.</span> <span class="nav-text">output</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Modules"><span class="nav-number">3.1.</span> <span class="nav-text">Modules</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Plugins"><span class="nav-number">3.2.</span> <span class="nav-text">Plugins</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单文件使用"><span class="nav-number">3.3.</span> <span class="nav-text">单文件使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成Source-Maps（使调试更容易）"><span class="nav-number">3.4.</span> <span class="nav-text">生成Source Maps（使调试更容易）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用webpack构建本地服务器"><span class="nav-number">3.5.</span> <span class="nav-text">使用webpack构建本地服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#热加载"><span class="nav-number">3.6.</span> <span class="nav-text">热加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WebPack和Grunt以及Gulp相比有什么特性"><span class="nav-number">3.7.</span> <span class="nav-text">WebPack和Grunt以及Gulp相比有什么特性</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">George Lucas</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
