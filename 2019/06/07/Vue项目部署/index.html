@@ -108,24 +108,30 @@
 
 
 
-  <meta name="description" content="准备工作  系统：笔者使用的是Windows 10系统，官网要求至少是Windows 7及以上。 git：flutter SDK开源，托管在github上，因此持续开发需要从github上拉取代码。 Java SDK:  下载安装。选默认的就行。 android studio &amp;amp; android SDK: 需要安装安卓IDE和SDK，并下载Dart和flutter组件。之前没有用过的同学">
+  <meta name="description" content="1. 编译问题经过配置，编译代码是按照模块打包压缩的，编译后的文件也是按模块区分，更新部分代码只会引起部分代码的更新，实验如下：  以vue项目编译后的JS文件为例   原始代码编译如下：  仅修改Ulog代码编译如下（白框为与原始文件的区别）：  仅修改UES编译如下（白框为与原始文件的区别）：  仅修改服务树(公共组件)编译如下（白框为与原始文件的区别）：  结论：  第三方组件如echart">
 <meta property="og:type" content="article">
-<meta property="og:title" content="flutter 入门教程之从零开始搭建flutter">
-<meta property="og:url" content="http://www.lushevol.com/2019/03/13/flutter 入门教程之从零开始搭建flutter/index.html">
+<meta property="og:title" content="Vue编程指导">
+<meta property="og:url" content="http://www.lushevol.com/2019/06/07/Vue项目部署/index.html">
 <meta property="og:site_name" content="Lushevol">
-<meta property="og:description" content="准备工作  系统：笔者使用的是Windows 10系统，官网要求至少是Windows 7及以上。 git：flutter SDK开源，托管在github上，因此持续开发需要从github上拉取代码。 Java SDK:  下载安装。选默认的就行。 android studio &amp;amp; android SDK: 需要安装安卓IDE和SDK，并下载Dart和flutter组件。之前没有用过的同学">
+<meta property="og:description" content="1. 编译问题经过配置，编译代码是按照模块打包压缩的，编译后的文件也是按模块区分，更新部分代码只会引起部分代码的更新，实验如下：  以vue项目编译后的JS文件为例   原始代码编译如下：  仅修改Ulog代码编译如下（白框为与原始文件的区别）：  仅修改UES编译如下（白框为与原始文件的区别）：  仅修改服务树(公共组件)编译如下（白框为与原始文件的区别）：  结论：  第三方组件如echart">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-20T11:00:40.598Z">
+<meta property="og:image" content="http://www.lushevol.com/2019/06/07/Vue项目部署/Vue项目部署指南.assets/Webpack%20编译输出文件图解.png">
+<meta property="og:image" content="http://www.lushevol.com/2019/06/07/Vue项目部署/Vue项目部署指南.assets/vue-origin.png">
+<meta property="og:image" content="http://www.lushevol.com/2019/06/07/Vue项目部署/Vue项目部署指南.assets/vue-ulog.png">
+<meta property="og:image" content="http://www.lushevol.com/2019/06/07/Vue项目部署/Vue项目部署指南.assets/vue-ues.png">
+<meta property="og:image" content="http://www.lushevol.com/2019/06/07/Vue项目部署/Vue项目部署指南.assets/vue-common.png">
+<meta property="og:updated_time" content="2019-06-07T14:22:29.477Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="flutter 入门教程之从零开始搭建flutter">
-<meta name="twitter:description" content="准备工作  系统：笔者使用的是Windows 10系统，官网要求至少是Windows 7及以上。 git：flutter SDK开源，托管在github上，因此持续开发需要从github上拉取代码。 Java SDK:  下载安装。选默认的就行。 android studio &amp;amp; android SDK: 需要安装安卓IDE和SDK，并下载Dart和flutter组件。之前没有用过的同学">
+<meta name="twitter:title" content="Vue编程指导">
+<meta name="twitter:description" content="1. 编译问题经过配置，编译代码是按照模块打包压缩的，编译后的文件也是按模块区分，更新部分代码只会引起部分代码的更新，实验如下：  以vue项目编译后的JS文件为例   原始代码编译如下：  仅修改Ulog代码编译如下（白框为与原始文件的区别）：  仅修改UES编译如下（白框为与原始文件的区别）：  仅修改服务树(公共组件)编译如下（白框为与原始文件的区别）：  结论：  第三方组件如echart">
+<meta name="twitter:image" content="http://www.lushevol.com/2019/06/07/Vue项目部署/Vue项目部署指南.assets/Webpack%20编译输出文件图解.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://www.lushevol.com/2019/03/13/flutter 入门教程之从零开始搭建flutter/"/>
+  <link rel="canonical" href="http://www.lushevol.com/2019/06/07/Vue项目部署/"/>
 
 
 
@@ -135,7 +141,7 @@
   };
 </script>
 
-  <title>flutter 入门教程之从零开始搭建flutter | Lushevol</title>
+  <title>Vue编程指导 | Lushevol</title>
   
 
 
@@ -284,7 +290,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lushevol.com/2019/03/13/flutter 入门教程之从零开始搭建flutter/">
+    <link itemprop="mainEntityOfPage" href="http://www.lushevol.com/2019/06/07/Vue项目部署/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="George Lucas">
@@ -301,7 +307,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">flutter 入门教程之从零开始搭建flutter
+          <h1 class="post-title" itemprop="name headline">Vue编程指导
               
             
           </h1>
@@ -326,24 +332,12 @@
                 
               
 
-              <time title="创建时间：2019-03-13 20:49:39" itemprop="dateCreated datePublished" datetime="2019-03-13T20:49:39+08:00">2019-03-13</time>
+              <time title="创建时间：2019-06-07 22:21:23 / 修改时间：22:22:29" itemprop="dateCreated datePublished" datetime="2019-06-07T22:21:23+08:00">2019-06-07</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-20 19:00:40" itemprop="dateModified" datetime="2018-08-20T19:00:40+08:00">2018-08-20</time>
               
             
           </span>
@@ -376,65 +370,44 @@
       
 
       
-        <ol>
-<li><p>准备工作</p>
-<ul>
-<li>系统：笔者使用的是Windows 10系统，官网要求至少是Windows 7及以上。</li>
-<li>git：flutter SDK开源，托管在github上，因此持续开发需要从github上拉取代码。</li>
-<li>Java SDK:  <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">下载安装</a>。选默认的就行。</li>
-<li>android studio &amp; android SDK: 需要安装安卓IDE和SDK，并<strong>下载Dart和flutter组件</strong>。之前没有用过的同学会遇到一些麻烦，解决办法见文末。</li>
-<li>其他：不能科学上网也没关系，贴心的谷歌为国内用户开放了国内镜像。</li>
-</ul>
-</li>
-<li><p>起步</p>
-<p>让我们开始吧！</p>
-<p>首先下载flutter代码，从<a href="https://github.com/flutter/flutter" target="_blank" rel="noopener">github</a>上拉取或者直接下载<a href="https://flutter.io/sdk-archive/#windows" target="_blank" rel="noopener">压缩包</a>都行。这里演示github下载</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone -b beta https://github.com/flutter/flutter.git</span><br></pre></td></tr></table></figure>
+        <h2 id="1-编译问题"><a href="#1-编译问题" class="headerlink" title="1. 编译问题"></a>1. 编译问题</h2><p>经过配置，编译代码是按照模块打包压缩的，编译后的文件也是按模块区分，更新部分代码只会引起部分代码的更新，实验如下：</p>
 <blockquote>
-<p><strong>注意：</strong>这里使用beta分支，因为目前master版本依赖的SDK版本很新，国内镜像没有更新。</p>
+<p><strong>以vue项目编译后的JS文件为例</strong></p>
 </blockquote>
-<p>然后配置环境变量，在<strong>系统变量</strong>中</p>
-<ul>
-<li>新增变量 PUB_HOSTED_URL 值为 <a href="https://pub.flutter-io.cn" target="_blank" rel="noopener">https://pub.flutter-io.cn</a>    //国内镜像</li>
-<li>新增变量 FLUTTER_STORAGE_BASE_URL 值为 <a href="https://storage.flutter-io.cn" target="_blank" rel="noopener">https://storage.flutter-io.cn</a>  //国内镜像</li>
-<li>将flutter/bin添加到PATH中</li>
-</ul>
-<p>重启计算机，双击flutter目录中的 flutter_console.bat 文件，开启一个命令终端。</p>
-<p>在终端中输入<code>flutter doctor</code>，检测环境是否<strong>安装完全</strong>（如果已经按照前面几步完成的化，这里只会出现一个 No devices available 错误）。</p>
-</li>
-<li><p>启动</p>
-<p>下面让我们来开始体验flutter的应用开发吧 : )</p>
-<ul>
-<li>在Android Studio启动页选择 Start a new Flutter project </li>
-<li>点击flutter application</li>
-<li>选择路径下载flutter SDK，然后再次选择该目录下的flutter(真·SDK路径，否则会报 Flutter SDK is not found in the specified location)</li>
-<li>选择工程路径，修改工程名称和描述。点击下一步。</li>
-<li>根据自己的情况选择是否勾选Kotlin或IOS。点击finish。</li>
-</ul>
-<p>一切完成后，会出现包含Material 组件的示例代码。但我们还缺少Android虚拟机，因此我们来创建一个。</p>
-<ul>
-<li>点击顶部导航栏Tools -&gt; AVD Manager</li>
-<li>选择Create Virtual Device，在提供的虚拟设备中选择一个（我选择的是Pixel 2 XL）。</li>
-<li>选择Android系统版本，并点击Download下载镜像。</li>
-<li>完成后运行虚拟设备。一个Android虚拟机就被创建出来了！</li>
-</ul>
-<p>此时点击Android Studio的Run按钮，<strong>等待编译</strong>，便可在虚拟机中看到示例代码的运行结果了。</p>
-</li>
-<li><p>可能出现的问题</p>
-<ul>
-<li><p>android studio 和 SDK下载</p>
-<p>Android studio <a href="https://developer.android.com/studio/?hl=zh-cn" target="_blank" rel="noopener">下载地址</a>，下载完成后配置proxy：Configure -&gt; settings -&gt; Appearance &amp; Behavior -&gt; System Settings -&gt; HTTP Proxy，选中Auto-detect proxy settings，勾选下方Automatic proxy configuration URL，填入代理地址 <code>mirrors.neusoft.edu.cn:80</code>（大连东软信息学院镜像服务器，任意镜像服务器都可以） 。然后点击HTTP Proxy下方的Android SDK，首先配置路径，然后会自动要求下载各种SDK，直接下一步即可。</p>
-<p>如果没有开发过项目，flutter会提示你没有同意Android的license，这个时候直接执行<code>flutter doctor --android-licenses</code>后一路同意即可。</p>
-</li>
-<li><p>Dart和flutter组件</p>
-<p>在Configure -&gt;  Plugins中搜索Dart和flutter（标准库中没有这俩，需要Browse Repositories中搜索），安装后点击Restart Android Studio 。</p>
-</li>
-<li><p>Emulator: emulator: ERROR: x86_64 emulation currently requires hardware acceleration!</p>
-<p>选择Tools -&gt; SDK Manager，选择SDK Tools -&gt; intel x86 Emulator Accelerator (HAXM installer)，点击Apply。它会让你下载，等待下载并finish即可。</p>
-</li>
-</ul>
-</li>
+<p><img src="Vue项目部署指南.assets/Webpack 编译输出文件图解.png" alt="Webpack 编译输出文件图解"></p>
+<p>原始代码编译如下：</p>
+<p><img src="Vue项目部署指南.assets/vue-origin.png" alt="原始代码"></p>
+<p>仅修改Ulog代码编译如下（白框为与原始文件的区别）：</p>
+<p><img src="Vue项目部署指南.assets/vue-ulog.png" alt="ulog编译"></p>
+<p>仅修改UES编译如下（白框为与原始文件的区别）：</p>
+<p><img src="Vue项目部署指南.assets/vue-ues.png" alt="UES编译"></p>
+<p>仅修改服务树(公共组件)编译如下（白框为与原始文件的区别）：</p>
+<p><img src="Vue项目部署指南.assets/vue-common.png" alt=""></p>
+<p>结论：</p>
+<ol>
+<li>第三方组件如echarts或element-ui，始终不会变化。</li>
+<li>修改哪部分代码，哪部分代码变化，不会导致全部代码更新。服务树对应公共组件代码。</li>
+<li>公共资源（如img、font等）方面，四份代码编译结果都一样。</li>
+<li>CSS样式方面，测试结果与JS一致。</li>
 </ol>
+<p><strong>因此，可以实现功能代码部分更新，但目前不是分目录，而是按文件区分</strong></p>
+<p><strong>由于Vue需要经过一层编译，因此不会像原生JS一样有表意文件名，而是按ID经过hash后的字符串。</strong></p>
+<blockquote>
+<p>webpack从根文件开始遍历，将关联在一起的代码合并成一个module，取其ID作为该模块的标识。</p>
+<p>注意：不同环境编译的同一套代码，ID可能不一样。同一环境则保持一致。</p>
+</blockquote>
+<h2 id="2-部署问题"><a href="#2-部署问题" class="headerlink" title="2. 部署问题"></a>2. 部署问题</h2><p><strong>推荐合并部署，即编译成一套代码放在一个目录中。</strong></p>
+<p>优点：</p>
+<ol>
+<li>资源共享，不会因为切换系统而重新请求资源，发挥单页面应用优势。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>pathname(目录)不好取名，推荐类似v2这种名称。</li>
+</ol>
+<p>若要<em>分开部署</em>，则只需将<strong>相同代码</strong>放置在不同目录下。新增路由时，需要在router/index.js中配置，否则会直接导向与目录同名的路由。</p>
+<h2 id="3-打包脚本"><a href="#3-打包脚本" class="headerlink" title="3. 打包脚本"></a>3. 打包脚本</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br><span class="line">cp -rf dist/*  ..../v2/</span><br></pre></td></tr></table></figure>
+<p>刷新浏览器即可更新</p>
 
       
     </div>
@@ -462,15 +435,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/04/27/webpack/" rel="next" title="代码处理&打包工具 - webpack">
+                <i class="fa fa-chevron-left"></i> 代码处理&打包工具 - webpack
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/13/IOS12 beta升级方法/" rel="prev" title="IOS12 beta升级方法">
-                IOS12 beta升级方法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -515,8 +488,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -580,6 +562,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-编译问题"><span class="nav-number">1.</span> <span class="nav-text">1. 编译问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-部署问题"><span class="nav-number">2.</span> <span class="nav-text">2. 部署问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-打包脚本"><span class="nav-number">3.</span> <span class="nav-text">3. 打包脚本</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

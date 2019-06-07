@@ -281,6 +281,183 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lushevol.com/2019/06/07/Vue项目部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="George Lucas">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lushevol">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/07/Vue项目部署/" itemprop="url">
+                  Vue编程指导
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-07 22:21:23 / 修改时间：22:22:29" itemprop="dateCreated datePublished" datetime="2019-06-07T22:21:23+08:00">2019-06-07</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-编译问题"><a href="#1-编译问题" class="headerlink" title="1. 编译问题"></a>1. 编译问题</h2><p>经过配置，编译代码是按照模块打包压缩的，编译后的文件也是按模块区分，更新部分代码只会引起部分代码的更新，实验如下：</p>
+<blockquote>
+<p><strong>以vue项目编译后的JS文件为例</strong></p>
+</blockquote>
+<p><img src="Vue项目部署指南.assets/Webpack 编译输出文件图解.png" alt="Webpack 编译输出文件图解"></p>
+<p>原始代码编译如下：</p>
+<p><img src="Vue项目部署指南.assets/vue-origin.png" alt="原始代码"></p>
+<p>仅修改Ulog代码编译如下（白框为与原始文件的区别）：</p>
+<p><img src="Vue项目部署指南.assets/vue-ulog.png" alt="ulog编译"></p>
+<p>仅修改UES编译如下（白框为与原始文件的区别）：</p>
+<p><img src="Vue项目部署指南.assets/vue-ues.png" alt="UES编译"></p>
+<p>仅修改服务树(公共组件)编译如下（白框为与原始文件的区别）：</p>
+<p><img src="Vue项目部署指南.assets/vue-common.png" alt=""></p>
+<p>结论：</p>
+<ol>
+<li>第三方组件如echarts或element-ui，始终不会变化。</li>
+<li>修改哪部分代码，哪部分代码变化，不会导致全部代码更新。服务树对应公共组件代码。</li>
+<li>公共资源（如img、font等）方面，四份代码编译结果都一样。</li>
+<li>CSS样式方面，测试结果与JS一致。</li>
+</ol>
+<p><strong>因此，可以实现功能代码部分更新，但目前不是分目录，而是按文件区分</strong></p>
+<p><strong>由于Vue需要经过一层编译，因此不会像原生JS一样有表意文件名，而是按ID经过hash后的字符串。</strong></p>
+<blockquote>
+<p>webpack从根文件开始遍历，将关联在一起的代码合并成一个module，取其ID作为该模块的标识。</p>
+<p>注意：不同环境编译的同一套代码，ID可能不一样。同一环境则保持一致。</p>
+</blockquote>
+<h2 id="2-部署问题"><a href="#2-部署问题" class="headerlink" title="2. 部署问题"></a>2. 部署问题</h2><p><strong>推荐合并部署，即编译成一套代码放在一个目录中。</strong></p>
+<p>优点：</p>
+<ol>
+<li>资源共享，不会因为切换系统而重新请求资源，发挥单页面应用优势。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>pathname(目录)不好取名，推荐类似v2这种名称。</li>
+</ol>
+<p>若要<em>分开部署</em>，则只需将<strong>相同代码</strong>放置在不同目录下。新增路由时，需要在router/index.js中配置，否则会直接导向与目录同名的路由。</p>
+<h2 id="3-打包脚本"><a href="#3-打包脚本" class="headerlink" title="3. 打包脚本"></a>3. 打包脚本</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br><span class="line">cp -rf dist/*  ..../v2/</span><br></pre></td></tr></table></figure>
+<p>刷新浏览器即可更新</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.lushevol.com/2019/04/27/webpack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -392,7 +569,7 @@
 <p>webpack也为我提供了完整的插件文档：<a href="https://link.juejin.im/?target=https%3A%2F%2Fwww.webpackjs.com%2Fplugins%2F" target="_blank" rel="noopener">插件文档</a></p>
 <p>在项目中我们主要使用VueLoaderPlugin来保障vue被正常解析。</p>
 <h4 id="单文件使用"><a href="#单文件使用" class="headerlink" title="单文件使用"></a>单文件使用</h4><p>webpack可以在终端中使用，在基本的使用方法如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> &#123;extry file&#125;出填写入口文件的路径，本文中就是上述main.js的路径，</span><br><span class="line"><span class="meta">#</span> &#123;destination for bundled file&#125;处填写打包文件的存放路径</span><br><span class="line"><span class="meta">#</span> 填写路径的时候不用添加&#123;&#125;</span><br><span class="line">webpack &#123;entry file&#125; &#123;destination for bundled file&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> &#123;extry file&#125;出填写入口文件的路径，本文中就是上述main.js的路径，</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> &#123;destination <span class="keyword">for</span> bundled file&#125;处填写打包文件的存放路径</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 填写路径的时候不用添加&#123;&#125;</span></span><br><span class="line">webpack &#123;entry file&#125; &#123;destination for bundled file&#125;</span><br></pre></td></tr></table></figure>
 <p>指定入口文件后，webpack将自动识别项目所依赖的其它文件。</p>
 <h4 id="生成Source-Maps（使调试更容易）"><a href="#生成Source-Maps（使调试更容易）" class="headerlink" title="生成Source Maps（使调试更容易）"></a>生成Source Maps（使调试更容易）</h4><p>开发总是离不开调试，方便的调试能极大的提高开发效率，不过有时候通过打包后的文件，你是不容易找到出错了的地方，对应的你写的代码的位置的，<code>Source Maps</code>就是来帮我们解决这个问题的。</p>
 <p>通过简单的配置，<code>webpack</code>就可以在打包时为我们生成的<code>source maps</code>，这为我们提供了一种对应编译文件和源文件的方法，使得编译后的代码可读性更高，也更容易调试。</p>
@@ -1793,7 +1970,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
